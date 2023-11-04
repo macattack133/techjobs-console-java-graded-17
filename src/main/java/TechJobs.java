@@ -1,3 +1,4 @@
+import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +60,7 @@ public class TechJobs {
 
                 // What is their search term?
                 System.out.println("\nSearch term:");
-                String searchTerm = in.nextLine();
+                String searchTerm = in.nextLine().toLowerCase();
 
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
@@ -120,9 +121,13 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        for(Map.Entry<String, HashMap<String, String>> someJobs :
-
+        for (HashMap<String, String> map : someJobs) {
+            System.out.println("*****");
+            for (String key : map.keySet()) {
+                String value = map.get(key);
+                System.out.println(key + ": " + value);
+            }
+            System.out.println("*****\n");
         }
-
     }
 }

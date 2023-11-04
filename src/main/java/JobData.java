@@ -1,3 +1,4 @@
+import com.sun.jdi.Value;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -5,10 +6,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -75,11 +73,14 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value)) {
                 jobs.add(row);
             }
         }
+        if(jobs.isEmpty()){
+            System.out.println("No Results");
 
+        }
         return jobs;
     }
 
@@ -93,10 +94,23 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        for(HashMap<String, String> map : allJobs) {
+            for (String key : map.keySet()) {
+                String aValue = map.get(key);
+                if (aValue.toLowerCase().contains(value)) {
+                    jobs.add(map);
+                }
+            }
+        } if (jobs.isEmpty()) {
+            System.out.println("No Results");
+        }
+        return jobs;
+    }
+
 
         // TODO - implement this method
-        return null;
-    }
+
 
     /**
      * Read in data from a CSV file and store it in a list
