@@ -1,7 +1,5 @@
-import javax.xml.namespace.QName;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -122,12 +120,12 @@ public class TechJobs {
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
         for (HashMap<String, String> map : someJobs) {
-            System.out.println("*****");
+            System.out.println("\n*****");
             for (String key : map.keySet()) {
                 String value = map.get(key);
                 System.out.println(key + ": " + value);
             }
-            System.out.println("*****\n");
+            System.out.println("*****");
         }
     }
 }
